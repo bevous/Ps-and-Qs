@@ -7,16 +7,14 @@ int main()
 {
 	nwacc::min_heap<int> heap;
 
-	for (auto index = 99; index >= 0; index--)
+	for (auto index = 0; index <= 5; index++)
 	{
 		heap.insert(index);
 	}
-	heap.insert(5);
-	heap.insert(4);
-	heap.insert(3);
-
-
+	heap.insert(9);
 	heap.print();
+
+	std::cout <<"removing" << std::endl;
 
 	auto temp = 1;
 	while (!heap.is_empty())
