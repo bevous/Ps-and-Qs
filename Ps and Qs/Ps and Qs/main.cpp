@@ -11,6 +11,11 @@ int main()
 	{
 		heap.insert(index);
 	}
+	heap.insert(5);
+	heap.insert(4);
+	heap.insert(3);
+
+
 	heap.print();
 
 	auto temp = 1;

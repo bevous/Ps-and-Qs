@@ -28,7 +28,7 @@ namespace nwacc
 			}
 			else
 			{
-				return this->array[0];
+				return this->array[1];
 			}
 		}
 		void insert(const E & x)
@@ -43,11 +43,11 @@ namespace nwacc
 			E copy = x;
 
 			this->array[0] = std::move(copy);
-			for (; x < this->array[hole / 2]; hole /= 2)
+			for (; x < this->array[hole / 2]; hole /= 2 )
 			{
 				this->array[hole] = std::move(this->array[hole / 2]);
 			}
-			this->array[hole] = std::move(this->array[0]);
+			this->array[hole] = std::move(copy);
 		}
 
 
