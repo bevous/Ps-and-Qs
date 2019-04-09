@@ -1,2 +1,9 @@
 ﻿  main.cpp
-  Ps and Qs.vcxproj -> C:\Users\Lewis\Source\Repos\Ps-and-Qs\Ps and Qs\x64\Debug\Ps and Qs.exe
+c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\maxheap.h(43): warning C4018: '<': signed/unsigned mismatch
+  c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\maxheap.h(41): note: while compiling class template member function 'void nwacc::max_heap<int>::print(std::ostream &) const'
+  c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\main.cpp(20): note: see reference to function template instantiation 'void nwacc::max_heap<int>::print(std::ostream &) const' being compiled
+  c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\main.cpp(11): note: see reference to class template instantiation 'nwacc::max_heap<int>' being compiled
+c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\maxheap.h(183): warning C4018: '<=': signed/unsigned mismatch
+  c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\maxheap.h(178): note: while compiling class template member function 'void nwacc::max_heap<int>::percolate_down(int)'
+  c:\users\lewis\source\repos\ps-and-qs\ps and qs\ps and qs\maxheap.h(136): note: see reference to function template instantiation 'void nwacc::max_heap<int>::percolate_down(int)' being compiled
+  Ps and Qs.vcxproj -> C:\Users\Lewis\source\repos\Ps-and-Qs\Ps and Qs\x64\Debug\Ps and Qs.exe

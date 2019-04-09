@@ -23,5 +23,8 @@
     <ClInclude Include="maxheap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
