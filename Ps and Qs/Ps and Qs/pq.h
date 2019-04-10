@@ -9,16 +9,15 @@ namespace nwacc
 	{
 	private:
 		nwacc::max_heap<T> my_max_heap;
+
+		int my_size;
 	public:
 		/*!
 		 * sets the starting size of the priority que
 		 * 
 		 * \param size
 		 */
-		pq()
-		{
-			
-		}
+		pq() { this->my_size = 0; }
 		/*!
 		 * the default size of the pq
 		 *
@@ -38,7 +37,7 @@ namespace nwacc
 		 *
 		 * \param out
 		 */
-		void print(std::ostream & out = std::cout) const
+		void print(std::ostream & out = std::cout)
 		{
 
 			this->my_max_heap.print(out);
@@ -52,6 +51,7 @@ namespace nwacc
 		void offer(T &value)
 		{
 			this->my_max_heap.insert(value);
+			this->my_size++;
 		}
 		/*!
 		 * inserts an element into the heap
@@ -61,6 +61,7 @@ namespace nwacc
 		void offer(T &&value)
 		{
 			this->my_max_heap.insert(value);
+			this->my_size++;
 		}
 		/*!
 		 * gets the head of the heap without removing it
@@ -78,7 +79,15 @@ namespace nwacc
 		 */
 		T poll()
 		{
-			return this->my_max_heap.is_empty() ? NULL : this->my_max_heap.remove();
+			this->my_size--;
+			if (this->my_max_heap.is_empty()) {
+				return NULL;
+			}
+			else {
+				T temp = this->my_max_heap.get_max();
+				this->my_max_heap.remove();
+				return temp;
+			}
 		}
 		/*!
 		 * gets the number of elements in the heap
@@ -87,7 +96,7 @@ namespace nwacc
 		 */
 		int size() const
 		{
-			return this->my_max_heap.my_size;
+			return this->my_size;
 		}
 		/*!
 		 * removes all elements from the heap
@@ -95,7 +104,9 @@ namespace nwacc
 		 */
 		void clear()
 		{
-			this->my_max_heap.clear();
+			while (!this->my_max_heap.is_empty) {
+				this->my_max_heap.remove;
+			}
 		}
 
 	};

@@ -8,10 +8,10 @@
 namespace nwacc
 {
 	template <typename E>
-	class min_heap
+	class max_heap
 	{
 	public:
-		min_heap(int capacity = kDefaultSize) : array(capacity + 1), size { 0 } {}
+		max_heap(int capacity = kDefaultSize) : array(capacity + 1), size { 0 } {}
 
 		static const int kDefaultSize = 50;
 
@@ -20,7 +20,7 @@ namespace nwacc
 			return this->size == 0;
 		}
 
-		const E & get_min() const
+		const E & get_max() const
 		{
 			if (this->is_empty())
 			{
@@ -28,47 +28,44 @@ namespace nwacc
 			}
 			else
 			{
-				return this->array[1];
+				return this->array[0];
 			}
 		}
 		void insert(const E & x)
 		{
-			if (this->size == this->array.size() - 1) 
+			// we want to see if I have room. 
+			if (this->my_size == this->array.size() - 1)
 			{
 				this->array.resize(this->array.size() * 2);
-			}
-
+			} // else, we have space, do_nothing();
 			// Percolate up
-			int hole = ++this->size;
-			E copy = x;
+			++this->my_size;
+			int hole = this->my_size - 1;
+			this->array[hole] = std::move(value);
 
-			this->array[0] = std::move(copy);
-			for (; x < this->array[hole / 2]; hole /= 2)
+			for (; hole > 0 && this->array[(hole - 1) / 2] < this->array[hole]; hole = (hole - 1) / 2)
 			{
-				this->array[hole] = std::move(this->array[hole / 2]);
+				std::swap(this->array[hole], this->array[(hole - 1) / 2]);
 			}
-			this->array[hole] = std::move(this->array[0]);
 		}
 
 
 		void insert(E && value)
 		{
 			// we want to see if I have room. 
-			if (this->size == this->array.size() - 1)
+			if (this->my_size == this->array.size() - 1)
 			{
 				this->array.resize(this->array.size() * 2);
 			} // else, we have space, do_nothing();
+			// Percolate up
+			++this->my_size;
+			int hole = this->my_size - 1;
+			this->array[hole] = std::move(value);
 
-			// unlike a BST or AVL we allow duplicates!
-			// we have to find the spot for the element (heap we call this the hole)
-			// we have to decide if it needs to move up (percolate)
-			auto spot = ++this->size; // most of the time auto hole = ++this->size;
-			while (spot > 1 && value < this->array[spot / 2])
+			for (; hole > 0 && this->array[(hole - 1) / 2] < this->array[hole]; hole = (hole - 1) / 2)
 			{
-				this->array[spot] = std::move(this->array[spot / 2]);
-				spot /= 2;
+				std::swap(this->array[hole], this->array[(hole - 1) / 2]);
 			}
-			this->array[spot] = std::move(value);
 		}
 
 		void remove() 
@@ -79,8 +76,8 @@ namespace nwacc
 			}
 			else
 			{
-				this->array[1] = std::move(this->array[this->size--]);
-				this->percolate_down(1);
+				this->array[0] = std::move(this->array[this->size--]);
+				this->percolate_down(0);
 			}
 		}
 

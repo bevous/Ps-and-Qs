@@ -23,7 +23,8 @@ int main()
 
 	while (!heap.is_empty())
 	{
-		std::cout<< heap.remove()<<", ";
+		std::cout << heap.get_max() << ", ";
+		heap.remove();
 	}
 
 	std::cout << std::endl <<"testing the PQ" << std::endl;
